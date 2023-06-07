@@ -1,3 +1,3 @@
-dash2.6.0
+dash2.10.2
 pandas
 gunicorn
