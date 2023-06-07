@@ -1,3 +1,0 @@
-dash2.6.0
-pandas
-gunicorn
