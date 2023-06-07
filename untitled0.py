@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jun  7 14:26:34 2023
-
-@author: NQing
-"""
-
 import dash
 from dash import html as html
 from dash import dcc as dcc
@@ -18,8 +11,8 @@ data1 = pd.read_csv('C:/Users/NQing/OneDrive/Máy tính/EXCEL-Quynh/Copy-of-adid
 
 #dash app
 
-app = dash.Dash(_name_)
-sever - app.sever
+app = dash.Dash(__name__)
+server = app.server
 #layout
 app.layout = html.Div(children = [
 	html.H1(children = 'The correlation between operating profit and six distinct types of products sold'), dcc.Dropdown(id = 'geo-dropdown',
@@ -39,5 +32,5 @@ def update_graph(selected_product):
 	graph = px.scatter(a, x ='Units Sold' , y = 'Operating Profit' )
 	return graph 
 
-if _name_ == '_main_':
+if __name__ == '__main__':
 	app.run_server(debug = True)
