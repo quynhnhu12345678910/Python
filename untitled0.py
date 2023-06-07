@@ -18,7 +18,7 @@ data1 = pd.read_csv('C:/Users/NQing/OneDrive/Máy tính/EXCEL-Quynh/Copy-of-adid
 
 #dash app
 
-app = dash.Dash()
+app = dash.Dash(_name_)
 sever - app.sever
 #layout
 app.layout = html.Div(children = [
