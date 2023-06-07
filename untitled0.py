@@ -19,7 +19,7 @@ data1 = pd.read_csv('C:/Users/NQing/OneDrive/Máy tính/EXCEL-Quynh/Copy-of-adid
 #dash app
 
 app = dash.Dash()
-
+sever - app.sever
 #layout
 app.layout = html.Div(children = [
 	html.H1(children = 'The correlation between operating profit and six distinct types of products sold'), dcc.Dropdown(id = 'geo-dropdown',
