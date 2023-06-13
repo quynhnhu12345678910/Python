@@ -29,7 +29,7 @@ app.layout = html.Div(children = [
 
 def update_graph(selected_product):
 	a = data1[data1['Product'] == selected_product]
-	graph = px.scatter(a, x ='Units Sold' , y = 'Operating Profit' )
+	graph = px.scatter(a, x ='Units Sold' , y = 'Operating Profit',trendline="lowess",color="Sales Method" )
 	return graph 
 
 if __name__ == '__main__':
