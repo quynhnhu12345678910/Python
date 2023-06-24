@@ -8,36 +8,35 @@ import plotly.express as px
 
 #getting the dataset
 
-data1 = pd.read_csv('C:/Users/NQing/OneDrive/Máy tính/EXCEL-Quynh/Copy-of-adidas.csv')
+data1 = pd.read_csv('C:/Users/huyho/Documents/code/Copy-of-adidas.csv')
 
 #dash app
 
-app = dash.Dash(__name__)
+app = dash.Dash()
 
 #layout
 app.layout = html.Div(children = [
     html.Div([
         html.H1(children = 'Financial Analysis of Adidas',
-                style={'text-align': 'center', 'font-size': '36px', 'color': '#333333', 'margin': '10px'})
-    ], style={'background-color': '#f8f9fa', 'padding': '20px'}),
+                style={'text-align': 'center'})
+    ]),
     html.Div([
         html.Div([
             dcc.Dropdown(
                 id = 'geo-dropdown',
                 options = [{'label': i, 'value': i}
                            for i in data1['Product'].unique()],
-                value = "Men's Street Footwear",
-                style={'font-size': '18px', 'color': '#333333', 'margin': '10px'}
+                value = "Men's Street Footwear"
             ),
             dcc.Graph(id = 'price-graph')
-        ], className='six columns', style={'border': '1px solid #ced4da', 'border-radius': '5px', 'margin': '10px'}),
+        ], className='six columns'),
         html.Div([
             dcc.Graph(id = 'bar-chart')
-        ], className='six columns', style={'border': '1px solid #ced4da', 'border-radius': '5px', 'margin': '10px'})
+        ], className='six columns')
     ], className='row'),
     html.Div([
         html.Div([
-            html.Label('Select a category:', style={'font-size': '18px', 'color': '#333333', 'margin': '10px'}),
+            html.Label('Select a category:'),
             dcc.Dropdown(
                 id = 'my_dropdown',
                 options = [{'label': 'Retailers', 'value': 'Retailer'},
@@ -46,11 +45,10 @@ app.layout = html.Div(children = [
                 value = 'Retailer',
                 multi = False,
                 clearable = False,
-                style = {"width": "50%", 'font-size': '18px', 'color': '#333333', 'margin': '10px'}
             ),
             dcc.Graph(id = 'the_graph')
-        ], style={'border': '1px solid #ced4da', 'border-radius': '5px', 'margin': '10px'})
-    ], className='row', style={'background-color': '#f8f9fa', 'padding': '20px'})
+        ])
+    ], className='row')
 ])
 
 @app.callback(
@@ -83,5 +81,5 @@ def update_pie(selected_column):
         piechart = px.pie(data_frame = data1, names = 'Sales Method', hole = 0.3)
     return piechart
 
-if __name__ == '__main__':
+if _name_ == '_main_':
     app.run_server(debug = True)
