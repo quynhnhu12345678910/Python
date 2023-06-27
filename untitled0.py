@@ -7,7 +7,7 @@ import plotly.express as px
 
 #getting the dataset
 
-data1 = pd.read_csv('')
+data1 = pd.read_csv('https://raw.githubusercontent.com/quynhnhu12345678910/Python/main/Copy-of-adidas.csv')
 
 #dash app
 
