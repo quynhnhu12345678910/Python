@@ -13,7 +13,7 @@ data1 = pd.read_csv('https://raw.githubusercontent.com/quynhnhu12345678910/Pytho
 #dash app
 
 app = dash.Dash(__name__)
-
+server = app.server
 #layout
 app.layout = html.Div(children = [
     html.Div([
