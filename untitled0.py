@@ -4,7 +4,7 @@ from dash import dcc as dcc
 from dash.dependencies import Input, Output
 import pandas as pd
 import plotly.express as px
-
+from flask import Flask
 
 #getting the dataset
 
@@ -12,7 +12,7 @@ data1 = pd.read_csv('https://raw.githubusercontent.com/quynhnhu12345678910/Pytho
 
 #dash app
 
-app = dash.Dash(__name__)
+app = Flask(__name__)
 
 #layout
 app.layout = html.Div(children = [
@@ -82,4 +82,4 @@ def update_pie(selected_column):
     return piechart
 
 if __name__ == '__main__':
-    app.run_server(debug = True)
+    app.run()
