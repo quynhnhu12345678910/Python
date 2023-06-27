@@ -7,7 +7,7 @@ import plotly.express as px
 
 #getting the dataset
 
-data1 = pd.read_csv('https://raw.githubusercontent.com/quynhnhu12345678910/Python/main/Copy-of-adidas.csv')
+data1 = pd.read_csv('')
 
 #dash app
 
@@ -29,7 +29,7 @@ app.layout = html.Div(children = [
 
 def update_graph(selected_product):
 	a = data1[data1['Product'] == selected_product]
-	graph = px.scatter(a, x ='Units Sold' , y = 'Operating Profit',trendline="lowess",color ="Sales Method")
+	graph = px.scatter(a, x ='Units Sold' , y = 'Operating Profit' )
 	return graph 
 
 if __name__ == '__main__':
