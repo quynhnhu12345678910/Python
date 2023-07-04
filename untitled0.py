@@ -8,12 +8,12 @@ import plotly.express as px
 
 #getting the dataset
 
-data1 = pd.read_csv('C:/Users/huyho/Documents/code/Copy-of-adidas.csv')
+data1 = pd.read_csv('https://raw.githubusercontent.com/quynhnhu12345678910/Python/main/Copy-of-adidas.csv')
 
 #dash app
 
-app = dash.Dash()
-
+app = dash.Dash(__name__)
+server=app.server 
 #layout
 app.layout = html.Div(children = [
     html.Div([
