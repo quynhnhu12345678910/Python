@@ -61,7 +61,8 @@ app.layout = html.Div(
                                                 dcc.Graph(id='bar-chart', style={'height': '300px'})  # Set height for the graph
                                             ]
                                         )
-                                    ]
+                                    ],
+                                    style={'display': 'flex'}  # Set display style to flex
                                 ),
                             ]
                         ),
@@ -147,3 +148,4 @@ def update_pie(selected_column):
 
 if __name__ == '__main__':
     app.run_server(debug=True)
+
