@@ -31,10 +31,10 @@ app.layout = html.Div(
                             children=[
                                 html.Div(
                                     className='row',
-                                    style={'display': 'flex', 'justify-content': 'space-between'},
                                     children=[
                                         html.Div(
-                                            className='col-5',  # Set width for the column
+                                            className='col-6',
+                                            style={'display': 'flex', 'flex-direction': 'column', 'align-items': 'center', 'justify-content': 'center'},
                                             children=[
                                                 html.Label('Select Product(s):', style={'color': '#1F618D'}),
                                                 dcc.Dropdown(
@@ -53,17 +53,31 @@ app.layout = html.Div(
                                                     value=[data1['Units Sold'].min(), data1['Units Sold'].max()],
                                                     marks={str(i): str(i) for i in range(data1['Units Sold'].min(), data1['Units Sold'].max() + 1, 100)}
                                                 ),
-                                                dcc.Graph(id='price-graph', style={'height': '300px'})  # Set height for the graph
                                             ]
                                         ),
                                         html.Div(
-                                            className='col-5',  # Set width for the column
+                                            className='col-6',
+                                            style={'display': 'flex', 'align-items': 'center', 'justify-content': 'center'},
+                                            children=[
+                                                dcc.Graph(id='price-graph', style={'height': '300px'})  # Set height for the graph
+                                            ]
+                                        )
+                                    ],
+                                    style={'display': 'flex', 'justify-content': 'center', 'margin-bottom': '20px'}
+                                ),
+                                html.Div(
+                                    className='row',
+                                    children=[
+                                        html.Div(
+                                            className='col-12',
+                                            style={'display': 'flex', 'align-items': 'center', 'justify-content': 'center'},
                                             children=[
                                                 dcc.Graph(id='bar-chart', style={'height': '300px'})  # Set height for the graph
                                             ]
                                         )
-                                    ]
-                                ),
+                                    ],
+                                    style={'display': 'flex', 'justify-content': 'center'}
+                                )
                             ]
                         ),
                         dcc.Tab(
@@ -98,11 +112,9 @@ app.layout = html.Div(
                                 ),
                             ]
                         ),
-                    ],
-                    style={'font-family': 'Arial', 'font-size': '18px'}
+                    ]
                 )
-            ],
-            style={'max-width': '800px', 'margin': '0 auto'}
+            ]
         )
     ]
 )
@@ -150,4 +162,5 @@ def update_pie(selected_column):
 
 if __name__ == '__main__':
     app.run_server(debug=True)
+
 
