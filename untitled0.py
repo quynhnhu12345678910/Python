@@ -23,71 +23,87 @@ app.layout = html.Div(
                     children='Financial Analysis of Adidas',
                     style={'text-align': 'center', 'color': '#1F618D', 'margin-bottom': '20px'}
                 ),
-                html.Div(
-                    className='row',
+                dcc.Tabs(
+                    id='tabs',
                     children=[
-                        html.Div(
-                            className='col-6',  # Set width for the column
+                        dcc.Tab(
+                            label='Page 1',
                             children=[
-                                html.Label('Select Product(s):', style={'color': '#1F618D'}),
-                                dcc.Dropdown(
-                                    id='geo-dropdown',
-                                    options=[{'label': i, 'value': i} for i in data1['Product'].unique()],
-                                    value=["Men's Street Footwear"],
-                                    multi=True,
-                                    style={'background-color': '#F0FFFF', 'color': '#1F618D'}
-                                ),
-                                html.Label('Range of Units Sold:', style={'color': '#1F618D'}),
-                                dcc.RangeSlider(
-                                    id='range-slider',
-                                    min=data1['Units Sold'].min(),
-                                    max=data1['Units Sold'].max(),
-                                    step=1,
-                                    value=[data1['Units Sold'].min(), data1['Units Sold'].max()],
-                                    marks={str(i): str(i) for i in range(data1['Units Sold'].min(), data1['Units Sold'].max() + 1, 100)}
-                                ),
-                                dcc.Graph(id='price-graph', style={'height': '300px'})  # Set height for the graph
-                            ]
-                        ),
-                        html.Div(
-                            className='col-6',  # Set width for the column
-                            children=[
-                                dcc.Graph(id='bar-chart', style={'height': '300px'})  # Set height for the graph
-                            ]
-                        )
-                    ]
-                ),
-                html.Div(
-                    style={'margin-top': '50px'},
-                    children=[
-                        html.H2(
-                            children='RATIO OF RETAILERS AND SALES METHOD',
-                            style={'color': '#1F618D', 'margin-bottom': '20px'}
-                        ),
-                        html.Div(
-                            style={'margin-bottom': '20px'},
-                            children=[
-                                html.Label('Select a Category:', style={'color': '#1F618D'}),
-                                dcc.Dropdown(
-                                    id='my_dropdown',
-                                    options=[
-                                        {'label': 'Retailers', 'value': 'Retailer'},
-                                        {'label': 'Sales Method', 'value': 'Sales Method'}
-                                    ],
-                                    value='Retailer',
-                                    multi=False,
-                                    clearable=False,
-                                    style={'background-color': '#F0FFFF', 'color': '#1F618D'}
+                                html.Div(
+                                    className='row',
+                                    children=[
+                                        html.Div(
+                                            className='col-6',  # Set width for the column
+                                            children=[
+                                                html.Label('Select Product(s):', style={'color': '#1F618D'}),
+                                                dcc.Dropdown(
+                                                    id='geo-dropdown',
+                                                    options=[{'label': i, 'value': i} for i in data1['Product'].unique()],
+                                                    value=["Men's Street Footwear"],
+                                                    multi=True,
+                                                    style={'background-color': '#F0FFFF', 'color': '#1F618D'}
+                                                ),
+                                                html.Label('Range of Units Sold:', style={'color': '#1F618D'}),
+                                                dcc.RangeSlider(
+                                                    id='range-slider',
+                                                    min=data1['Units Sold'].min(),
+                                                    max=data1['Units Sold'].max(),
+                                                    step=1,
+                                                    value=[data1['Units Sold'].min(), data1['Units Sold'].max()],
+                                                    marks={str(i): str(i) for i in range(data1['Units Sold'].min(), data1['Units Sold'].max() + 1, 100)}
+                                                ),
+                                                dcc.Graph(id='price-graph', style={'height': '300px'})  # Set height for the graph
+                                            ]
+                                        ),
+                                        html.Div(
+                                            className='col-6',  # Set width for the column
+                                            children=[
+                                                dcc.Graph(id='bar-chart', style={'height': '300px'})  # Set height for the graph
+                                            ]
+                                        )
+                                    ]
                                 ),
                             ]
                         ),
-                        dcc.Graph(id='the_graph')
+                        dcc.Tab(
+                            label='Page 2',
+                            children=[
+                                html.Div(
+                                    style={'margin-top': '50px'},
+                                    children=[
+                                        html.H2(
+                                            children='RATIO OF RETAILERS AND SALES METHOD',
+                                            style={'color': '#1F618D', 'margin-bottom': '20px'}
+                                        ),
+                                        html.Div(
+                                            style={'margin-bottom': '20px'},
+                                            children=[
+                                                html.Label('Select a Category:', style={'color': '#1F618D'}),
+                                                dcc.Dropdown(
+                                                    id='my_dropdown',
+                                                    options=[
+                                                        {'label': 'Retailers', 'value': 'Retailer'},
+                                                        {'label': 'Sales Method', 'value': 'Sales Method'}
+                                                    ],
+                                                    value='Retailer',
+                                                    multi=False,
+                                                    clearable=False,
+                                                    style={'background-color': '#F0FFFF', 'color': '#1F618D'}
+                                                ),
+                                            ]
+                                        ),
+                                        dcc.Graph(id='pie-chart', style={'height': '400px'})  # Set height for the graph
+                                    ]
+                                ),
+                            ]
+                        ),
                     ]
                 )
             ]
         )
     ]
 )
+
 
 @app.callback(
     Output(component_id='price-graph', component_property='figure'),
@@ -106,6 +122,7 @@ def update_scatter(selected_products, selected_range):
     )
     return graph
 
+
 @app.callback(
     Output(component_id='bar-chart', component_property='figure'),
     Input(component_id='geo-dropdown', component_property='value')
@@ -117,7 +134,7 @@ def update_bar(selected_products):
 
 
 @app.callback(
-    Output(component_id='the_graph', component_property='figure'),
+    Output(component_id='pie-chart', component_property='figure'),
     Input(component_id='my_dropdown', component_property='value')
 )
 def update_pie(selected_column):
@@ -126,6 +143,7 @@ def update_pie(selected_column):
     elif selected_column == 'Sales Method':
         piechart = px.pie(data_frame=data1, names='Sales Method', hole=0.3)
     return piechart
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)
