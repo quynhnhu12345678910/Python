@@ -31,9 +31,10 @@ app.layout = html.Div(
                             children=[
                                 html.Div(
                                     className='row',
+                                    style={'display': 'flex', 'justify-content': 'space-between'},
                                     children=[
                                         html.Div(
-                                            className='col-6',  # Set width for the column
+                                            className='col-5',  # Set width for the column
                                             children=[
                                                 html.Label('Select Product(s):', style={'color': '#1F618D'}),
                                                 dcc.Dropdown(
@@ -56,13 +57,12 @@ app.layout = html.Div(
                                             ]
                                         ),
                                         html.Div(
-                                            className='col-6',  # Set width for the column
+                                            className='col-5',  # Set width for the column
                                             children=[
                                                 dcc.Graph(id='bar-chart', style={'height': '300px'})  # Set height for the graph
                                             ]
                                         )
-                                    ],
-                                    style={'display': 'flex'}  # Set display style to flex
+                                    ]
                                 ),
                             ]
                         ),
@@ -98,9 +98,11 @@ app.layout = html.Div(
                                 ),
                             ]
                         ),
-                    ]
+                    ],
+                    style={'font-family': 'Arial', 'font-size': '18px'}
                 )
-            ]
+            ],
+            style={'max-width': '800px', 'margin': '0 auto'}
         )
     ]
 )
